@@ -1,9 +1,8 @@
 import { STAGE_HEIGHT, STAGE_WIDTH } from "./constants";
 
-export const createStage = () =>
-    Array.from(Array(STAGE_HEIGHT), () =>
-        new Array(STAGE_WIDTH).fill([0, 'clear'])
-    )
+export const createCell = () => [0, true]; // second argument false if contains collided element
+export const createStageRow = () => Array(STAGE_WIDTH).fill(createCell());
+export const createStage = () => Array(STAGE_HEIGHT).fill(createStageRow())
 
 export const checkCollision = (player, stage, { x: moveX, y: moveY }) => {
     for (let y = 0; y < player.tetromino.length; y += 1) {
@@ -19,7 +18,7 @@ export const checkCollision = (player, stage, { x: moveX, y: moveY }) => {
                 if (newX < 0 || newX > stage[y].length - 1)
                     return true;
 
-                if (stage[newY][newX][1] !== 'clear')
+                if (!stage[newY][newX][1])
                     return true;
             }
         }
