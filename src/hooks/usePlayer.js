@@ -33,7 +33,6 @@ export const usePlayer = () => {
         let offset = 1;
         while (checkCollision(new_player, stage, { x: 0, y: 0 })) {
             new_player.pos.x += offset;
-            console.log(offset, -(offset + (offset > 0 ? 1 : -1)));
             offset = -(offset + (offset > 0 ? 1 : -1));
 
             if (offset > new_player.tetromino[0].length) {

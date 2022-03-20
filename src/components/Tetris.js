@@ -19,8 +19,6 @@ const Tetris = () => {
     const [stage, rows_cleared, setStage] = useStage(player, resetPlayer);
     const [score, rows, level, setScore, setRows, setLevel] = useGameStatus(rows_cleared);
 
-    console.log('re-render');
-
     const movePlayer = dir => {
         if (!checkCollision(player, stage, { x: dir, y: 0 }))
             updatePlayerPos({ x: dir, y: 0, collided: false });
@@ -46,11 +44,9 @@ const Tetris = () => {
             updatePlayerPos({ x: 0, y: 1, collided: false });
         } else {
             if (player.pos.y < 1) {
-                console.log('GAME OVER');
                 setGameOver(true);
                 setDropTime(null);
             }
-            console.log('on bottom');
             updatePlayerPos({ x: 0, y: 0, collided: true });
         }
     }
